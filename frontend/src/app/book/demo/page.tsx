@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export default function DemoBookingPage() {
   const [slots, setSlots] = useState<{ start_time: string; end_time: string }[]>([]);
   const [loading, setLoading] = useState(true);
@@ -10,8 +12,16 @@ export default function DemoBookingPage() {
 
   useEffect(() => {
     async function fetchAvailability() {
+      if (!API_BASE_URL) {
+        setError('API URL is not configured');
+        setLoading(false);
+        return;
+      }
+
       try {
-        const res = await axios.get('http://127.0.0.1:8000/availability?user_id=1');
+        const res = await axios.get(`${API_BASE_URL}/availability`, {
+          params: { user_id: 1 },
+        });
         setSlots(res.data);
       } catch (err: any) {
         setError(err.message || 'Error loading availability');
@@ -23,8 +33,13 @@ export default function DemoBookingPage() {
   }, []);
 
   async function handleBook(slot: { start_time: string; end_time: string }) {
+    if (!API_BASE_URL) {
+      alert('API URL is not configured');
+      return;
+    }
+
     try {
-      const res = await axios.post('http://127.0.0.1:8000/checkout', {
+      const res = await axios.post(`${API_BASE_URL}/checkout`, {
         user_id: 1,
         start_time: slot.start_time,
         end_time: slot.end_time,
@@ -61,4 +76,3 @@ export default function DemoBookingPage() {
     </main>
   );
 }
-

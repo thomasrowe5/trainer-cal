@@ -5,7 +5,7 @@ from fastapi import APIRouter, Query
 router = APIRouter()
 
 
-@router.get("/availability")
+@router.get("")
 def get_availability(user_id: int = Query(...)):
     base = datetime.now().replace(hour=9, minute=0, second=0, microsecond=0) + timedelta(days=1)
     slots = []

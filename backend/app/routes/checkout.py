@@ -15,7 +15,7 @@ class CheckoutRequest(BaseModel):
     price: float
 
 
-@router.post("/checkout")
+@router.post("")
 def create_checkout_session(data: CheckoutRequest):
     try:
         session = stripe.checkout.Session.create(

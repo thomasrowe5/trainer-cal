@@ -5,13 +5,9 @@ export default function Home() {
       <p className="text-lg mb-8">
         Book. Pay. Train. — simple scheduling and payments for coaches.
       </p>
-      <a
-        href="/book/demo"
-        className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-      >
+      <a href="/book" className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
         Book a Demo
       </a>
     </main>
   );
 }
-

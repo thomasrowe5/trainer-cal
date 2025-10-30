@@ -18,7 +18,7 @@ class Booking(BaseModel):
 BOOKINGS: List[Booking] = []
 
 
-@router.get("/bookings")
+@router.get("")
 def list_bookings(user_id: int = Query(...)):
     return [b.dict() for b in BOOKINGS if b.user_id == user_id]
 
@@ -27,7 +27,7 @@ class CancelRequest(BaseModel):
     booking_id: int
 
 
-@router.post("/bookings/cancel")
+@router.post("/cancel")
 def cancel_booking(data: CancelRequest):
     for b in BOOKINGS:
         if b.id == data.booking_id:
