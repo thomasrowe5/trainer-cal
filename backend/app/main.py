@@ -17,9 +17,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Register all routes
-app.include_router(availability.router, prefix="")
-app.include_router(checkout.router, prefix="")
-app.include_router(stripe_webhook.router, prefix="")
-app.include_router(bookings.router, prefix="")
-app.include_router(health.router, prefix="")
+# Register routers (directly — no .router suffix!)
+app.include_router(availability, prefix="")
+app.include_router(checkout, prefix="")
+app.include_router(stripe_webhook, prefix="")
+app.include_router(bookings, prefix="")
+app.include_router(health, prefix="")
+
