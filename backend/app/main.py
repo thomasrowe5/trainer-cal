@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from .db import create_db_and_tables
-from .routes.auth_google import router as auth_google_router
+# from .routes.auth_google import router as auth_google_router
 from .routes.availability import router as availability_router
 from .routes.bookings import router as bookings_router
 from .routes.checkout import router as checkout_router
@@ -33,7 +33,7 @@ app.include_router(checkout_router, prefix="/checkout")
 app.include_router(stripe_webhook_router, prefix="/webhook")
 app.include_router(bookings_router, prefix="/bookings")
 app.include_router(health_router, prefix="/health")
-app.include_router(auth_google_router)
+#app.include_router(auth_google_router)
 
 
 @app.get("/")
