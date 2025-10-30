@@ -28,6 +28,14 @@ def on_startup() -> None:
     create_db_and_tables()
 
 
+@app.on_event("startup")
+async def log_routes() -> None:
+    import logging
+
+    routes = [route.path for route in app.routes]
+    logging.warning(f"Registered routes: {routes}")
+
+
 app.include_router(availability_router, prefix="/availability")
 app.include_router(checkout_router, prefix="/checkout")
 app.include_router(stripe_webhook_router, prefix="/webhook")
