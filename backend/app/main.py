@@ -27,4 +27,3 @@ app.include_router(checkout_router)
 app.include_router(stripe_webhook_router)
 app.include_router(bookings_router)
 app.include_router(health_router)
-
