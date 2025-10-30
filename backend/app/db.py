@@ -1,4 +1,5 @@
-from sqlmodel import SQLModel, create_engine
+from contextlib import contextmanager
+from sqlmodel import SQLModel, create_engine, Session
 
 DATABASE_URL = "sqlite:///trainercal.db"
 engine = create_engine(DATABASE_URL, echo=False)
@@ -6,3 +7,7 @@ engine = create_engine(DATABASE_URL, echo=False)
 def create_db_and_tables():
     SQLModel.metadata.create_all(engine)
 
+@contextmanager
+def get_session():
+    with Session(engine) as session:
+        yield session
