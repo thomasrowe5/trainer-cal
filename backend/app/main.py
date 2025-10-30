@@ -1,27 +1,25 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from .routes import availability, checkout, stripe_webhook, bookings, health
 
-from .db import create_db_and_tables
-from .routes import auth_google, availability, bookings, checkout, health, stripe_webhook
+app = FastAPI()
 
-app = FastAPI(title="TrainerCal API")
+origins = [
+    "http://localhost:3000",
+    "https://trainercal.vercel.app"
+]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000", "https://trainercal.vercel.app"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-@app.on_event("startup")
-def on_startup():
-    create_db_and_tables()
-
-# include routers
-app.include_router(health, prefix="")
-app.include_router(auth_google)
+# Register all routes
 app.include_router(availability, prefix="")
 app.include_router(checkout, prefix="")
-app.include_router(stripe_webhook.router, prefix="")
-app.include_router(bookings)
+app.include_router(stripe_webhook, prefix="")
+app.include_router(bookings, prefix="")
+app.include_router(health, prefix="")
