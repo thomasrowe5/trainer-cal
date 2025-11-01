@@ -1,3 +1,6 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -8,9 +11,6 @@ from .routes.bookings import router as bookings_router
 from .routes.checkout import router as checkout_router
 from .routes.health import router as health_router
 from .routes.stripe_webhook import router as stripe_webhook_router
-
-from dotenv import load_dotenv
-load_dotenv()
 
 app = FastAPI(title="TrainerCal API")
 
