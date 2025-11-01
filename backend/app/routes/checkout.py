@@ -31,8 +31,8 @@ def create_checkout_session(data: CheckoutRequest):
                 }
             ],
             mode="payment",
-            success_url="http://localhost:3000/success",
-            cancel_url="http://localhost:3000/book/demo",
+            success_url="https://trainercal.vercel.app/success",
+            cancel_url="https://trainercal.vercel.app/book/demo",
             metadata={
                 "user_id": str(data.user_id),
                 "start_time": data.start_time,

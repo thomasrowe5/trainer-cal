@@ -9,6 +9,9 @@ from .routes.checkout import router as checkout_router
 from .routes.health import router as health_router
 from .routes.stripe_webhook import router as stripe_webhook_router
 
+from dotenv import load_dotenv
+load_dotenv()
+
 app = FastAPI(title="TrainerCal API")
 
 app.add_middleware(
