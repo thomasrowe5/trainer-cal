@@ -43,7 +43,8 @@ app.include_router(availability_router, prefix="/availability")
 app.include_router(checkout_router, prefix="/checkout")
 app.include_router(stripe_webhook_router, prefix="/webhook")
 app.include_router(bookings_router, prefix="/bookings")
-app.include_router(health_router)
+app.include_router(health_router, prefix="/")
+
 # app.include_router(auth_google_router)
 
 
